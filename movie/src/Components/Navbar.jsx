@@ -1,3 +1,4 @@
+import { Search } from 'lucide-react'
 import React from 'react'
 
 const Navbar = () => {
@@ -19,11 +20,11 @@ const Navbar = () => {
             <div className='relative hidden md:inline-flex'>
                 <input type="text" placeholder='Search...' className='bg-[#333333] px-4 py-2
                 rounded-full min-w-72 pr-10 outline-none'/>
-                search-icon
+                <Search className='absolute top-2 right-4 w-5 h-5' />
             </div>
 
-            <button>Get AI Movie Picks</button>
-            <button>Sign In</button>
+            <button className='bg-[#e50914] px-5 py-2 text-white cursor-pointer'>Get AI Movie Picks</button>
+            <button className='border border-[#333333] px-4 py-2 cursor-pointer'>Sign In</button>
         </div>
     </nav>
   )
