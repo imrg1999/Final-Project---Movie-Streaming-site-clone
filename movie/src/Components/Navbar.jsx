@@ -1,11 +1,15 @@
 import { Search } from 'lucide-react'
+import logo from "../assets/netflix-logo.png";
 import React from 'react'
 
 const Navbar = () => {
   return (
     <nav className='bg-black text-gray-200 flex justify-between items-center p-4
     h-20 text-sm md:text-[15px] font-medium text-nowrap'>
-        <label> Logo </label>
+       <a href="#">
+  <img src={logo} alt="logo" className="w-40 cursor-pointer" />
+       </a>
+
         <ul className='hidden xl:flex gap-6'>
             <li className='cursor-pointer hover:text-[#e50914]'>Home</li>
             <li className='cursor-pointer hover:text-[#e50914]'>TV Shows</li>
@@ -23,8 +27,8 @@ const Navbar = () => {
                 <Search className='absolute top-2 right-4 w-5 h-5' />
             </div>
 
-            <button className='bg-[#e50914] px-5 py-2 text-white cursor-pointer'>Get AI Movie Picks</button>
-            <button className='border border-[#333333] px-4 py-2 cursor-pointer'>Sign In</button>
+            {/*<button className='bg-[#e50914] px-5 py-2 text-white cursor-pointer'>Get AI Movie Picks</button>*/}
+            <button className='border border-[#333333] px-4 py-2 cursor-pointer hover:bg-[#e50914]'>Sign In</button>
         </div>
     </nav>
   )
