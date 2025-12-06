@@ -1,4 +1,5 @@
 import React from 'react'
+import card1 from '../assets/anoracard.webp'
 
 const Cardlist = () => {
   const data = [
@@ -6,7 +7,7 @@ const Cardlist = () => {
       id: 1,
       title: "card 1",
       description: "description for card 1",
-      imageUrl: "image"
+      imageUrl: card1
     }, 
     {
       id: 2,
@@ -16,7 +17,19 @@ const Cardlist = () => {
     }
   ]
   return (
-    <div>Cardlist</div>
+    <div className='text-white md:px-4'>
+      <h2 className='pt-10 pb-5 text-lg font-medium'>Upcoming</h2>
+      <div className='flex'>
+      {data.map((item) => {
+        return(
+          <div key={item.id}>
+          <img src={card1} alt="img" />
+          <h2>Movie of the year</h2>
+        </div>
+        )
+      })}
+      </div>
+    </div>
   )
 }
 
