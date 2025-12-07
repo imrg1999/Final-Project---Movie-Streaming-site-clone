@@ -2,6 +2,7 @@ import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import card1 from '../assets/anoracard.webp'
+import card2 from '../assets/mickey17_cover.avif'
 
 const Cardlist = () => {
   const data = [
@@ -15,7 +16,7 @@ const Cardlist = () => {
       id: 2,
       title: "card 2",
       description: "description for card 2",
-      imageUrl: "image 2"
+      imageUrl: card2
     },
     {
       id: 3,
@@ -30,10 +31,10 @@ const Cardlist = () => {
       imageUrl: "image 4"
     },
     {
-      id: 3,
-      title: "card 3",
-      description: "description for card 3",
-      imageUrl: "image 3"
+      id: 5,
+      title: "card 5",
+      description: "description for card 5",
+      imageUrl: "image 5"
     },
     {
       id: 3,
@@ -49,7 +50,7 @@ const Cardlist = () => {
       {data.map((item, index) => {
         return(
           <SwiperSlide key={index} className='max-w-72'>
-          <img src={card1} alt="img" className='w-full h-44 object-center object-cover'/>
+          <img src={item.imageUrl} alt="img" className='w-full h-44 object-center object-cover'/>
           <p className='text-center pt-2'>Movie of the year</p>
         </SwiperSlide>
         )

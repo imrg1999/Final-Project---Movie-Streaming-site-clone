@@ -1,6 +1,7 @@
 import React from 'react'
 import Hero from '../Components/Hero'
 import Cardlist from '../Components/Cardlist'
+import Footer from '../Components/Footer'
 
 const Homepage = () => {
   return (
@@ -10,6 +11,7 @@ const Homepage = () => {
         <Cardlist />
         <Cardlist />
         <Cardlist />
+        <Footer />
     </div>
   )
 }
