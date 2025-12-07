@@ -1,4 +1,6 @@
 import React from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import card1 from '../assets/anoracard.webp'
 
 const Cardlist = () => {
@@ -14,21 +16,45 @@ const Cardlist = () => {
       title: "card 2",
       description: "description for card 2",
       imageUrl: "image 2"
+    },
+    {
+      id: 3,
+      title: "card 3",
+      description: "description for card 3",
+      imageUrl: "image 3"
+    },
+    {
+      id: 4,
+      title: "card 4",
+      description: "description for card 4",
+      imageUrl: "image 4"
+    },
+    {
+      id: 3,
+      title: "card 3",
+      description: "description for card 3",
+      imageUrl: "image 3"
+    },
+    {
+      id: 3,
+      title: "card 3",
+      description: "description for card 3",
+      imageUrl: "image 3"
     }
   ]
   return (
     <div className='text-white md:px-4'>
       <h2 className='pt-10 pb-5 text-lg font-medium'>Upcoming</h2>
-      <div className='flex'>
-      {data.map((item) => {
+      <Swiper slidesPerView={"auto"} spaceBetween={10} className='mySwiper'>
+      {data.map((item, index) => {
         return(
-          <div key={item.id}>
-          <img src={card1} alt="img" />
-          <h2>Movie of the year</h2>
-        </div>
+          <SwiperSlide key={index} className='max-w-72'>
+          <img src={card1} alt="img" className='w-full h-44 object-center object-cover'/>
+          <p className='text-center pt-2'>Movie of the year</p>
+        </SwiperSlide>
         )
       })}
-      </div>
+      </Swiper>
     </div>
   )
 }

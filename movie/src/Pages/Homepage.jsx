@@ -7,6 +7,9 @@ const Homepage = () => {
     <div className='p-5'>
         <Hero />
         <Cardlist />
+        <Cardlist />
+        <Cardlist />
+        <Cardlist />
     </div>
   )
 }
