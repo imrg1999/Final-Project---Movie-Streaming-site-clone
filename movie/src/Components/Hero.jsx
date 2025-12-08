@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Anora from '../assets/Anora.webp'
 import { Bookmark, Play } from 'lucide-react'
 
 const Hero = () => {
+  const[movie, setMovie] = useState(null);
+  const options = {method: 'GET', headers: {accept: 'application/json'}};
+
+  useEffect(() => {
+fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', options)
+  .then(res => res.json())
+  .then(res => {
+    if(res.results && res.results.length > 0) {
+      setMovie(res.results[1])
+    }
+  })
+  .catch(err => console.error(err));
+  },[])
+
+
   return (
     <div className='text-white relative'>
         <img src={Anora} alt="Anora" className='w-full h-[600px] object-center object-cover'/>
