@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react'
 import logo from "../assets/netflix-logo.png";
-import React from 'react'
+
 
 const Navbar = () => {
   return (

@@ -7,10 +7,10 @@ const Homepage = () => {
   return (
     <div className='p-5'>
         <Hero />
-        <Cardlist />
-        <Cardlist />
-        <Cardlist />
-        <Cardlist />
+        <Cardlist title="Now Playing" category="now_playing"/>
+        <Cardlist title="Top Rated" category="top_rated"/>
+        <Cardlist title="Popular" category="popular"/>
+        <Cardlist title="Upcoming" category="upcoming"/>
         <Footer />
     </div>
   )
