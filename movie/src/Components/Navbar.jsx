@@ -1,5 +1,6 @@
 import { Search } from 'lucide-react'
 import logo from "../assets/netflix-logo.png";
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -7,7 +8,9 @@ const Navbar = () => {
     <nav className='bg-black text-gray-200 flex justify-between items-center p-4
     h-20 text-sm md:text-[15px] font-medium text-nowrap'>
        <a href="#">
+        <Link to={'/'}>
   <img src={logo} alt="logo" className="w-40 cursor-pointer" />
+  </Link>
        </a>
 
         <ul className='hidden xl:flex gap-6'>
@@ -28,7 +31,9 @@ const Navbar = () => {
             </div>
 
             {/*<button className='bg-[#e50914] px-5 py-2 text-white cursor-pointer'>Get AI Movie Picks</button>*/}
+            <Link to={'/signin'}>
             <button className='border border-[#333333] px-4 py-2 cursor-pointer hover:bg-[#e50914]'>Sign In</button>
+            </Link>
         </div>
     </nav>
   )

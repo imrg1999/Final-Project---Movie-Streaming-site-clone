@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import card1 from '../assets/anoracard.webp'
-import card2 from '../assets/mickey17_cover.avif'
+import {Link} from 'react-router-dom'
 
 const Cardlist = ({title, category}) => {
 
@@ -31,8 +30,10 @@ fetch(`https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`, op
       {data.map((item, index) => {
         return(
           <SwiperSlide key={index} className='max-w-72'>
+            <Link to={`/movie/${item.id}`}>
           <img src={`https://images.tmdb.org/t/p/w500/${item.backdrop_path}`} alt="img" className='w-full h-44 object-center object-cover'/>
-          <p className='text-center pt-2'>{item.original_title}</p>
+          <p className='text-center pt-2 [text-decoration:none]'>{item.original_title}</p>
+          </Link>
         </SwiperSlide>
         )
       })}
