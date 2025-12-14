@@ -1,6 +1,7 @@
-import { ZodError } from "zod";
+import { success, ZodError } from "zod";
 import userModel from "../Model/userModel.js";
 import { zodSchema } from "../Utility/zodSchema.js";
+import { passwordHashing } from "../Utility/passwordHashing.js";
 
 
 export const showAllUsers = async(req,res) => {
@@ -23,5 +24,36 @@ export const showAllUsers = async(req,res) => {
         success: false,
         message: "Internal Server Error"
     })
+}
+}
+
+export const addNewUser = async(req,res) => {
+    try{
+        const newReqFormat = await zodSchema.parseAsync(req.body);
+        const safePass = await passwordHashing(newReqFormat.password);
+        
+        const newUser = await userModel.create({
+            ...newReqFormat,
+            password: safePass
+        })
+
+        res.status(201).json({
+            success: true,
+            message: "New user created successfully",
+            user: newUser
+        })
+
+    }catch(error){
+        if (error instanceof ZodError) {
+         return   res.status(400).json({
+        success: false,
+        message: "Invalid Request"
+    })
+        }  else {
+    return res.status(500).json({
+        success: false,
+        message: "Internal Server Error"
+    })
+}
 }
 }
