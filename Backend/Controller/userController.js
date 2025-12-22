@@ -1,4 +1,4 @@
-import { success, ZodError } from "zod";
+import { ZodError } from "zod";
 import userModel from "../Model/userModel.js";
 import { zodSchema } from "../Utility/zodSchema.js";
 import { passwordHashing } from "../Utility/passwordHashing.js";
@@ -10,7 +10,7 @@ export const showAllUsers = async(req,res) => {
     if(!allUsers || allUsers.length === 0) {
     return res.status(404).json({
         success: false,
-        message: "No movies listed",
+        message: "No users listed",
         users: []
         })
     }
@@ -31,6 +31,15 @@ export const addNewUser = async(req,res) => {
     try{
         const newReqFormat = await zodSchema.parseAsync(req.body);
         const safePass = await passwordHashing(newReqFormat.password);
+
+        const alreadyExists = await userModel.findOne({email: newReqFormat.email});
+        
+                if(alreadyExists) {
+                return res.status(409).json({
+                success: false,
+                message: "The User Already Exists"
+            })
+         }
         
         const newUser = await userModel.create({
             ...newReqFormat,
