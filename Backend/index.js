@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import userRoutes from './Routes/userRoutes.js';
 import {connectDB} from './Config/connectDB.js'
+import authRoutes from '/Routes/authRoutes.js'
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 connectDB();
 
 app.use('/api',userRoutes);
+app.use('/auth',authRoutes);
 
 app.get('/', (req,res) => {
     res.status(200).json({
