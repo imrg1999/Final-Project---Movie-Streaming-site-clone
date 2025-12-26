@@ -1,4 +1,4 @@
-import { ZodError } from "zod";
+import { success, ZodError } from "zod";
 import userModel from "../Model/userModel.js";
 import { zodSchema } from "../Utility/zodSchema.js";
 import { passwordHashing } from "../Utility/passwordHashing.js";
@@ -65,4 +65,26 @@ export const addNewUser = async(req,res) => {
     })
 }
 }
+}
+
+export const deleteUser = async(req,res)=> {
+    try{
+        const {id} = req.params;
+        const deleteOne = await userModel.findByIdAndDelete(id);
+        if(!deleteOne){
+          return res.status(404).json({
+            success: false,
+            message: "The User could not be deleted"
+          })
+        }
+        res.status(200).json({
+            success: true,
+            message: "User Deleted Successfully"
+        }) 
+    }catch(error) {
+       return res.status(500).json({
+        success: false,
+        message: "Internal Server Error"
+       })     
+        }
 }
