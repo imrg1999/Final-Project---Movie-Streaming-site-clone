@@ -1,4 +1,4 @@
-import { success, ZodError } from "zod";
+import { ZodError } from "zod";
 import userModel from "../Model/userModel.js";
 import { zodSchema } from "../Utility/zodSchema.js";
 import { passwordHashing } from "../Utility/passwordHashing.js";
@@ -87,4 +87,33 @@ export const deleteUser = async(req,res)=> {
         message: "Internal Server Error"
        })     
         }
+}
+
+export const updateUser = async(req,res) => {
+    try{
+    const {id} = req.params;
+    const updateInfo = await zodSchema.parseAsync(req.body);
+    if(updateInfo.password) {
+        updateInfo.password = await passwordHashing(updateInfo.password)
+    }
+    const updatedData = await userModel.findByIdAndUpdate(id, {...updateInfo},
+        {new: true}
+    )
+    if(!updatedData) {
+        return res.status(400).json({
+            success: false,
+            message: "Data wasn't updated"
+        })
+    }
+    res.status(200).json({
+        success: true,
+        message: "Data updated successfully",
+        data: updatedData
+    })
+} catch(error) {
+     return res.status(500).json({
+        success: false,
+        message: "Internal Server Error"
+       })
+}
 }
